@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Economía Mundial: Siglos XX y XXI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="book">
+    <!-- Portada -->
+    <div class="page cover active">
+      <h1>Economía Mundial</h1>
+      <h2>Siglos XX y XXI</h2>
+      <p>Libro digital interactivo — Análisis comparativo por continentes</p>
+      <button id="startBtn">Abrir libro</button>
+    </div>
+
+    <!-- Página 1: Introducción -->
+    <div class="page">
+      <h2>Introducción</h2>
+      <p>Este libro digital analiza la evolución económica global durante los siglos XX y XXI, explorando los procesos de industrialización, globalización y desarrollo sostenible en los cinco continentes.</p>
+    </div>
+
+    <!-- Página 2: América -->
+    <div class="page">
+      <h2>América</h2>
+      <p>Durante el siglo XX, América Latina experimentó una fuerte industrialización por sustitución de importaciones. En el siglo XXI, la región enfrenta desafíos de desigualdad y dependencia de materias primas.</p>
+    </div>
+
+    <!-- Página 3: Europa -->
+    <div class="page">
+      <h2>Europa</h2>
+      <p>Tras la Segunda Guerra Mundial, Europa impulsó su reconstrucción mediante el Plan Marshall. En el siglo XXI, la Unión Europea se consolida como bloque económico clave.</p>
+    </div>
+
+    <!-- Página 4: Asia -->
+    <div class="page">
+      <h2>Asia</h2>
+      <p>Asia ha sido el motor del crecimiento económico global en las últimas décadas, con economías como China, Japón, Corea del Sur e India desempeñando roles cruciales.</p>
+    </div>
+
+    <!-- Página 5: África -->
+    <div class="page">
+      <h2>África</h2>
+      <p>A lo largo del siglo XX, África enfrentó procesos de descolonización y búsqueda de estabilidad. Hoy, avanza en integración regional y diversificación económica.</p>
+    </div>
+
+    <!-- Página 6: Oceanía -->
+    <div class="page">
+      <h2>Oceanía</h2>
+      <p>Australia y Nueva Zelanda lideran el desarrollo económico en la región, con una fuerte orientación al comercio internacional y la sostenibilidad ambiental.</p>
+    </div>
+
+    <!-- Página 7: Conclusiones -->
+    <div class="page">
+      <h2>Conclusiones</h2>
+      <p>El análisis comparativo muestra cómo las trayectorias económicas reflejan tanto factores históricos como políticas contemporáneas. La cooperación internacional será clave en el futuro.</p>
+    </div>
+
+    <!-- Controles -->
+    <button id="prevBtn" class="nav-btn">⬅</button>
+    <button id="nextBtn" class="nav-btn">➡</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom, #e3f2fd, #bbdefb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.book {
+  position: relative;
+  width: 800px;
+  height: 500px;
+  perspective: 2000px;
+}
+
+.page {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform-origin: left;
+  transition: transform 1s;
+}
+
+.page h2 {
+  color: #1565c0;
+}
+
+.page.cover {
+  background: linear-gradient(to right, #1976d2, #64b5f6);
+  color: white;
+  text-align: center;
+}
+
+.page.cover h1 {
+  font-size: 2.5em;
+  margin-top: 100px;
+}
+
+.page.cover h2 {
+  font-weight: 400;
+}
+
+.page.cover button {
+  margin-top: 50px;
+  padding: 10px 25px;
+  background: white;
+  color: #1565c0;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.page.cover button:hover {
+  background: #e3f2fd;
+}
+
+.nav-btn {
+  position: absolute;
+  bottom: 20px;
+  background: #1565c0;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#prevBtn {
+  left: 20px;
+}
+
+#nextBtn {
+  right: 20px;
+}
+
+.nav-btn:hover {
+  background: #42a5f5;
+}
+const pages = document.querySelectorAll(".page");
+let current = 0;
+
+document.getElementById("nextBtn").addEventListener("click", () => {
+  if (current < pages.length - 1) {
+    pages[current].style.transform = "rotateY(-180deg)";
+    current++;
+  }
+});
+
+document.getElementById("prevBtn").addEventListener("click", () => {
+  if (current > 0) {
+    current--;
+    pages[current].style.transform = "rotateY(0deg)";
+  }
+});
+
+document.getElementById("startBtn").addEventListener("click", () => {
+  pages[0].style.transform = "rotateY(-180deg)";
+  current = 1;
+});
